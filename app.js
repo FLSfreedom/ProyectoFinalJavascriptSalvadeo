@@ -37,6 +37,7 @@ class creditoSimulado {
 const listaSimulaciones = [];
 
 
+
 function indicarMesOpcion(meses) {
     switch (meses) {
         case 6:
@@ -63,6 +64,9 @@ function indicarMesOpcion(meses) {
             alert(listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`));
             break;
         case 2:
+            alert();
+            break;
+        case 3:
             resultado = salir();
             break;
         default:
@@ -71,10 +75,14 @@ function indicarMesOpcion(meses) {
     }
 }
 
+
 do {
-    meses = parseFloat(prompt("Ingrese a cuantos meses desea devolver el crédito: 6, 12, 18 o 24. \nSi desea ver sus simulaciones recientes ingrese 1. \nSi desea salir ingrese 2."))
+    meses = parseFloat(prompt("Ingrese a cuantos meses desea devolver el crédito: 6, 12, 18 o 24. \nSi desea ver todas sus simulaciones recientes ingrese 1. \nSi desea ver sus simulaciones recientes iguales o mayores a 100000 ingrese 2. \nSi desea salir ingrese 3."))
     if (meses == 6 || meses == 12 || meses == 18 || meses == 24) {
     importe = parseFloat(prompt("Ingrese el importe del crédito que desea solicitar."))
     }
     indicarMesOpcion(meses)
-} while (meses != 2);
+} while (meses != 3);
+
+const simulacionesGrandes = listaSimulaciones.filter((creditoSimulado) => creditoSimulado.importe > 1000 );
+console.log(simulacionesGrandes);
