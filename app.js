@@ -36,6 +36,7 @@ class creditoSimulado {
 
 const listaSimulaciones = [];
 
+let simulacionesGrandes = [];
 
 
 function indicarMesOpcion(meses) {
@@ -64,7 +65,7 @@ function indicarMesOpcion(meses) {
             alert(listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`));
             break;
         case 2:
-            alert();
+            alert((simulacionesGrandes = listaSimulaciones.filter((creditoSimulado) => creditoSimulado.importe > 100000 )).map(({simulacion}) => simulacion).join(`\n`));
             break;
         case 3:
             resultado = salir();
@@ -83,6 +84,3 @@ do {
     }
     indicarMesOpcion(meses)
 } while (meses != 3);
-
-const simulacionesGrandes = listaSimulaciones.filter((creditoSimulado) => creditoSimulado.importe > 1000 );
-console.log(simulacionesGrandes);
