@@ -65,7 +65,7 @@ function indicarMesOpcion(meses) {
             alert(listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`));
             break;
         case 2:
-            alert((simulacionesGrandes = listaSimulaciones.filter((creditoSimulado) => creditoSimulado.importe > 100000 )).map(({simulacion}) => simulacion).join(`\n`));
+            alert((simulacionesGrandes = listaSimulaciones.filter((creditoSimulado) => creditoSimulado.importe > 99999 )).map(({simulacion}) => simulacion).join(`\n`));
             break;
         case 3:
             resultado = salir();
