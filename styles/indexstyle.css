@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@font-face {
+    font-family: 'Frijole';
+    src: url('Frijole-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'SeymourOne';
+    src: url('SeymourOne-Regular.ttf') format('truetype');
+}
+
+body {
+    background-image:linear-gradient(to top, rgb(102, 100, 11), rgb(250, 185, 110)); background-repeat: no-repeat; background-attachment: fixed;
+}
+
+header div {
+    margin-left: 5%;
+}
+
+header div h1 {
+    color:rgb(248, 247, 183);
+    font-family: 'Frijole';
+    font-size: 50px;
+}
+
+.container-fluid {
+    margin-bottom: 2%;
+}
+
+.estiloDivTituloSec {
+    display: grid;
+    background-image:radial-gradient(rgb(114, 235, 90), rgb(255, 253, 151), rgb(255, 163, 77), transparent);
+    height: 120px;
+    align-items: center;
+    text-align: center;
+}
+
+.estiloDivTituloSec h2 {
+    font-family: 'SeymourOne';
+    color:rgb(34, 94, 143);
+    font-size: 35px;
+}
+
+.estiloDivLista {
+    display: grid;
+    background-image: radial-gradient(rgb(102, 100, 11), rgb(102, 100, 11), rgb(102, 100, 11), transparent);
+    align-content: center;
+}
+
+.estiloDivLista h3 {
+    font-family: 'SeymourOne';
+    color:rgb(100, 190, 250);
+    text-align: center;
+    font-size: 25px;
+}
+
+.estiloDivLista ul {
+    color:rgb(100, 190, 250);
+    text-align: center;
+    list-style-type: none;
+    font-size: 19px;
+}
+
+.estiloAviso {
+    display: grid;
+    background-image:url(../images/plantamonedas.jpg);
+    background-size:100% 100%;
+    height: 400px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+.estiloAviso h3 {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    font-family: 'SeymourOne';
+    color:rgb(94 36 112);
+    font-size: 25px;
+}
+
+.seccionSimulacion {
+    display:grid;
+    background-color: black;
+    height: 200px;
+    margin: 0.5%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+}
