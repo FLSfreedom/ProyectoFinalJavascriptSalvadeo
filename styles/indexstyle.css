@@ -3,6 +3,8 @@
     padding: 0;
 }
 
+/* Fuentes */
+
 @font-face {
     font-family: 'Frijole';
     src: url('Frijole-Regular.ttf') format('truetype');
@@ -13,9 +15,13 @@
     src: url('SeymourOne-Regular.ttf') format('truetype');
 }
 
+/* Estilos del body */
+
 body {
     background-image:linear-gradient(to top, rgb(102, 100, 11), rgb(250, 185, 110)); background-repeat: no-repeat; background-attachment: fixed;
 }
+
+/* Estilos del header */
 
 header div {
     margin-left: 5%;
@@ -26,6 +32,8 @@ header div h1 {
     font-family: 'Frijole';
     font-size: 50px;
 }
+
+/* Estilos del bloque inicial (informativo) */
 
 .container-fluid {
     margin-bottom: 2%;
@@ -81,6 +89,8 @@ header div h1 {
     color:rgb(94 36 112);
     font-size: 25px;
 }
+
+/* Estilos del bloque de simulación y listas */
 
 .seccionSimulacion {
     display:grid;
