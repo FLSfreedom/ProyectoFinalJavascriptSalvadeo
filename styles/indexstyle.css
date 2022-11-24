@@ -95,7 +95,7 @@ header div h1 {
 .seccionSimulacion {
     display:grid;
     background-color: black;
-    height: 400px;
+    height: auto;
     margin: 0.5%;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 0.5fr 6fr;
@@ -116,4 +116,27 @@ header div h1 {
     background-image:url(../images/fondocalculador.jpg);
     background-size: 100% 100%;
     margin: 3%;
+}
+
+#formularioSimulador {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+}
+
+input {
+    margin: 11% 11% !important;
+}
+
+#mesesCredito {
+    grid-row: 1/2;
+}
+
+#importeCredito {
+    grid-row: 2/3;
+}
+
+#botonSimular {
+    grid-row: 3/4;
 }
