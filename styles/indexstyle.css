@@ -95,11 +95,11 @@ header div h1 {
 .seccionSimulacion {
     display:grid;
     background-color: black;
-    height: 200px;
+    height: 400px;
     margin: 0.5%;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 3fr;
-    grid-column-gap: 10px;
+    grid-template-rows: 0.5fr 6fr;
+    grid-column-gap: 1px;
 }
 
 .seccionSimulacion h3 {
@@ -108,4 +108,12 @@ header div h1 {
     color:rgb(100, 190, 250);
     font-size: 25px;
     margin-left: 5%;
+    margin-top: 1%;
+}
+
+.bloqueUno {
+    grid-column: 1/2;
+    background-image:url(../images/fondocalculador.jpg);
+    background-size: 100% 100%;
+    margin: 3%;
 }
