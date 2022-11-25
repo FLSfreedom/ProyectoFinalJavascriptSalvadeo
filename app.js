@@ -1,66 +1,102 @@
-// let importe = 0;
-// let meses = 0;
+let importe = 0;
+let meses = 0;
 
-// function seisMeses(importe, meses) {
-//     return (importe + ((importe / 100) *10)) / meses;
-// }
+function seisMeses(importe, meses) {
+    return (importe + ((importe / 100) *10)) / meses;
+}
 
-// function doceMeses(importe, meses) {
-//     return (importe + ((importe / 100) *20)) / meses;
-// }
+function doceMeses(importe, meses) {
+    return (importe + ((importe / 100) *20)) / meses;
+}
 
-// function dieciochoMeses(importe, meses) {
-//     return (importe + ((importe / 100) *30)) / meses;
-// }
+function dieciochoMeses(importe, meses) {
+    return (importe + ((importe / 100) *30)) / meses;
+}
 
-// function veinticuatroMeses(importe, meses) {
-//     return (importe + ((importe / 100) *40)) / meses;
-// }
+function veinticuatroMeses(importe, meses) {
+    return (importe + ((importe / 100) *40)) / meses;
+}
 
-// function salir() {
-//     alert (`Ingresó salir`);
-// }
+function equisMeses(importe, meses) {
+    return (importe + ((importe / 100) *70)) / meses;
+}
 
-// function resultadoCotizacion(resultado, meses) {
-//     alert (`serán ${meses} cuotas de ${Math.round(resultado)} pesos cada una`);
-// }
+function resultadoCotizacion(resultado, meses) {
+    alert (`serán ${meses} cuotas de ${Math.round(resultado)} pesos cada una`);
+}
 
-// class creditoSimulado {
-//     constructor(importe, meses, resultado) {
-//         this.importe = importe;
-//         this.meses = meses;
-//         this.resultado = Math.round(resultado);
-//         this.simulacion = ` Importe $${importe} - meses ${meses} - cuotas fijas de $${Math.round(resultado)}. `;
-//     }
-// }
+class creditoSimulado {
+    constructor(importe, meses, resultado) {
+        this.importe = importe;
+        this.meses = meses;
+        this.resultado = Math.round(resultado);
+        this.simulacion = ` Importe $${importe} - meses ${meses} - cuotas fijas de $${Math.round(resultado)}. `;
+    }
+}
 
-// const listaSimulaciones = [];
+let listaSimulaciones = [];
+let simulacionesGrandes = [];
 
-// let simulacionesGrandes = [];
+let listaSimulacionesLocalS = localStorage.getItem('listaSimulaciones');
 
+if(listaSimulacionesLocalS) {
+    listaSimulaciones = JSON.parse(listaSimulacionesLocalS);
+}
 
-// function indicarMesOpcion(meses) {
-//     switch (meses) {
-//         case 6:
-//             resultado = seisMeses(importe, meses);
-//             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
-//             resultadoCotizacion(resultado, meses)
-//             break;
-//         case 12:
-//             resultado = doceMeses(importe, meses);
-//             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
-//             resultadoCotizacion(resultado, meses)
-//             break;
-//         case 18:
-//             resultado = dieciochoMeses(importe, meses);
-//             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
-//             resultadoCotizacion(resultado, meses)
-//             break;
-//         case 24:
-//             resultado = veinticuatroMeses(importe, meses);
-//             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
-//             resultadoCotizacion(resultado, meses)
-//             break;
+let errorIntroDatos = document.getElementById('error');
+let formulario = document.getElementById('formularioSimulador');
+let listaCreditos = document.getElementById('listaCreditosRealizados');
+
+function indicarMesOpcion(meses) {
+    switch (meses) {
+        case 6:
+            resultado = seisMeses(importe, meses);
+            listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+            break;
+        case 12:
+            resultado = doceMeses(importe, meses);
+            listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+            break;
+        case 18:
+            resultado = dieciochoMeses(importe, meses);
+            listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+            break;
+        case 24:
+            resultado = veinticuatroMeses(importe, meses);
+            listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+            break;
+        default:
+            resultado = equisMeses(importe, meses);
+            listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+            break;
+    }
+}
+
+for (let credito of listaSimulaciones) {
+    let li = document.createElement('li');
+    li.innerText =`Importe $${credito.importe} - meses ${credito.meses} - cuotas fijas de $${Math.round(credito.resultado)}.`;
+    listaCreditos.appendChild(li);
+};
+
+formularioSimulador.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let datos = e.target.children;}
+);
+
+if((datos[0].value !== '' && datos[0].value > 0) && (datos[1].value !== '' && datos[1].value > 0)) {
+    let existeDisfraz = disfracesEnVenta.some((disfraz) => disfraz.nombre === datos[0].value);
+    if(existeDisfraz) {
+      parrafoError.innerText = 'Este disfraz ya existe, imposible agregarlo de nuevo.'
+    } else {      
+      disfracesEnVenta.push(new Disfraz(incremento,datos[0].value, datos[1].value, datos[2].value));
+      incremento++;
+      listaDisfraces.innerHTML += `<li>Nombre: ${datos[0].value} - Precio: ${datos[1].value} - Stock: ${datos[2].value}</li>`
+      parrafoError.innerText = ''
+      localStorage.setItem('disfracezEnVenta', JSON.stringify(disfracesEnVenta));
+    }
+  } else {
+    parrafoError.innerText = 'Todos los campos son obligatorios';
+};
 //         case 1:
 //             alert(listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`));
 //             break;
@@ -70,11 +106,7 @@
 //         case 3:
 //             resultado = salir();
 //             break;
-//         default:
-//             alert(`No ingresaste una cantidad de meses u opción válida`)
-//             break;
-//     }
-// }
+
 
 
 // do {

@@ -140,3 +140,13 @@ input {
 #botonSimular {
     grid-row: 3/4;
 }
+
+h4 {
+    font-family: 'SeymourOne';
+    color:rgb(94 36 112);
+    font-size: 20px;
+}
+
+.bloquesDeListas {
+    margin: 3%;
+}
