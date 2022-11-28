@@ -147,6 +147,70 @@ h4 {
     font-size: 20px;
 }
 
-.bloquesDeListas {
+.bloqueDeLista1 {
     margin: 3%;
 }
+
+.bloqueDeLista1 div {
+    height: 400px;
+    background-color: rgb(18, 80, 88);
+}
+
+.bloqueDeLista2 {
+    margin: 3%;
+}
+
+.bloqueDeLista2 div {
+    height: 400px;
+    background-color: rgb(18, 80, 88);
+}
+
+#error {
+    color: red;
+    font-weight: bold;
+}
+
+#listaCreditosRealizados {
+    color:rgb(100, 190, 250);
+    font-weight: bold;
+}
+
+#filtroMayorA {
+    display: inline;
+    height: 20px;
+    width: 100px;
+    margin: 0px !important;
+    font-family: sans-serif;
+}
+
+@media screen and (max-width: 992px) {
+    .seccionSimulacion {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 0.5fr 3fr 3fr;
+    }
+    .bloqueUno {
+        grid-row: 2/3;
+    }
+    .bloqueDeLista1 {
+        grid-row: 2/3;
+    }
+    .bloqueDeLista2 {
+        grid-row: 3/4;
+    }
+     }
+
+@media screen and (max-width: 768px) {
+    .seccionSimulacion {
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.5fr 3fr 3fr 3fr;
+    }
+    .bloqueUno {
+        grid-row: 2/3;
+    }
+    .bloqueDeLista1 {
+        grid-row: 3/4;
+    }
+    .bloqueDeLista2 {
+        grid-row: 4/5;
+    }
+     }

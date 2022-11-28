@@ -71,9 +71,19 @@ if (meses !== '' && importe !== '' && meses > 0 && importe > 0) {
             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
             break;
             }
+    errorIntroDatos.innerText = '';
+
 } else {
-    alert('ingresá algo');
+    errorIntroDatos.innerText = 'Debés completar todos los campos ¡Por favor!';
 };
+datos[0].value = '';
+datos[1].value = '';
+
+listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`)
+
+if (listaSimulaciones.length > 4) {
+    listaSimulaciones.splice(0, 1);
+}
 });
 
 console.log(listaSimulaciones);
@@ -85,9 +95,7 @@ console.log(listaSimulaciones);
 //     listaCreditos.appendChild(li);
 // };
 
-let parrafoCreditos = document.createElement("p");
-parrafoCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`)
-listaCreditos.appendChild(parrafoCreditos); 
+
 
 // formularioSimulador.addEventListener('submit', (e) => {
 //     e.preventDefault();

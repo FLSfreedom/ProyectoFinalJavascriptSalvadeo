@@ -42,14 +42,21 @@
                 <input type="number" id="importeCredito" placeholder="Introduzca el importe a solicitar">
                 <input type="submit" id="botonSimular" value="¡Simular ahora!">
             </form>
+            <p id="error"></p>
         </div>
-        <div class="bloquesDeListas">
+        <div class="bloqueDeLista1">
             <h4>Simulaciones realizadas</h4>
-            <div id="listaCreditosRealizados"></div>
+            <div>
+                <p id="listaCreditosRealizados"></p>
+            </div>
         </div>
-        <div class="bloquesDeListas">
-            <h4>Simulaciones recientes mayores a</h4>
-            <ul></ul>
+        <div class="bloqueDeLista2">
+            <h4>Filtro mayores que 
+                <input type="number" id="filtroMayorA" placeholder="Número">
+            </h4>
+            <div>
+                <p> </p>
+            </div>
         </div>
     </div>
     <script src="app.js"></script>
