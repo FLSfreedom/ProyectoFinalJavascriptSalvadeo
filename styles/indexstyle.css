@@ -142,31 +142,44 @@ input {
 }
 
 h4 {
+    grid-row: 1/2;
     font-family: 'SeymourOne';
     color:rgb(94 36 112);
     font-size: 20px !important;
 }
 
 .bloqueDeLista1 {
+    display: grid;
+    grid-template-rows: 1fr 13fr;
     margin: 3%;
 }
 
 .bloqueDeLista1 div {
-    height: 400px;
     background-color: rgb(18, 80, 88);
+    grid-row: 2/3;
 }
 
 .bloqueDeLista2 {
+    display: grid;
+    grid-template-rows: 1fr 13fr;
     margin: 3%;
 }
 
 .bloqueDeLista2 div {
-    height: 400px;
+    grid-row: 2/3;
     background-color: rgb(18, 80, 88);
+}
+
+#nuevaSimulacion {
+    font-family: 'SeymourOne';
+    color: rgb(146, 211, 48);
+    text-align: center;
+    font-weight: bold;
 }
 
 #error {
     color: red;
+    text-align: center;
     font-weight: bold;
 }
 
@@ -199,7 +212,28 @@ h4 {
     border-radius: 10px;
 }
 
+/* footer */
+
+footer {
+    text-align: center;
+}
+
+footer a {
+    font-weight: bold;
+    color:rgb(94 36 112);
+    text-decoration: none;
+}
+
 /* responsive */
+
+@media screen and (max-width: 1084px) {
+    .bloqueDeLista1 {
+        grid-template-rows: 1fr 7fr;
+    }   
+    .bloqueDeLista2 {
+        grid-template-rows: 1fr 7fr;
+    }
+     }
 
 @media screen and (max-width: 992px) {
     .seccionSimulacion {
@@ -223,6 +257,9 @@ h4 {
     h4 {
         font-size: 40px !important;
     }
+    #nuevaSimulacion {
+        font-size: 22px
+    }
     #filtroMayorA {
         height: 35px;
         width: 150px;
@@ -239,9 +276,15 @@ h4 {
     #listaConFiltro {
         font-size: 25px;
     }
+    .bloqueDeLista1 {
+        grid-template-rows: 1fr 4fr;
+    }   
+    .bloqueDeLista2 {
+        grid-template-rows: 1fr 4fr;
+    }
      }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 845px) {
     .seccionSimulacion {
         grid-template-columns: 1fr;
         grid-template-rows: 0.5fr 3fr 3fr 3fr;
@@ -263,10 +306,19 @@ h4 {
     h4 {
         font-size: 40px;
     }
+    #nuevaSimulacion {
+        font-size: 24px;
+    }
     #listaCreditosRealizados {
         font-size: 26px;
     }
     #listaConFiltro {
         font-size: 26px;
+    }
+    .bloqueDeLista1 {
+        grid-template-rows: 1fr 4fr;
+    }   
+    .bloqueDeLista2 {
+        grid-template-rows: 1fr 5fr;
     }
      }

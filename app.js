@@ -27,13 +27,10 @@ function equisMeses(importe, meses) {
     return (importe + (importe*.70)) / meses;
 }
 
-function resultadoCotizacion(resultado, meses) {
-    alert (`serán ${meses} cuotas de ${Math.round(resultado)} pesos cada una`);
-}
-
 let listaSimulaciones = [];
 let simulacionesGrandes = [];
 
+let nuevaSimulacionC = document.getElementById('nuevaSimulacion');
 let errorIntroDatos = document.getElementById('error');
 let formulario = document.getElementById('formularioSimulador');
 let listaCreditos = document.getElementById('listaCreditosRealizados');
@@ -80,6 +77,7 @@ if (meses !== '' && importe !== '' && meses > 0 && importe > 0) {
             break;
             }
     errorIntroDatos.innerText = '';
+    nuevaSimulacionC.innerText = `Importe $${importe} - meses ${meses} - cuotas fijas de $${Math.round(resultado)}.`;
 
 } else {
     errorIntroDatos.innerText = 'Debés completar todos los campos ¡Por favor!';
@@ -87,11 +85,11 @@ if (meses !== '' && importe !== '' && meses > 0 && importe > 0) {
 datos[0].value = '';
 datos[1].value = '';
 
-listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`)
+listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`);
 
 if (listaSimulaciones.length > 4) {
     listaSimulaciones.splice(0, 1);
-}
+};
 
 localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones));
 
@@ -99,4 +97,4 @@ localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones));
 
 function ingresarFiltro(value) {
     listaFiltrada.innerText = listaSimulaciones.filter((creditoSimulado) => creditoSimulado.importe > value ).map(({simulacion}) => simulacion).join(`\n`);
-}
+};
