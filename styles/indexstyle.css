@@ -338,4 +338,27 @@ footer a {
         font-size: 20px;
         padding-left: 0%;
     }
+     }
+
+@media screen and (max-width: 345px) {
+    h1 {
+        font-size: 40px !important;
+    }
+    .estiloDivTituloSec {
+        height: 220px;
+    }
+    h3 {
+        font-size: 25px !important;
+    }
+    h4 {
+        font-size: 25px !important;
+    }
+    .estiloAviso h3 {
+        font-size: 25px !important;
+    }
+    .estiloDivLista ul {
+        text-align: center;
+        font-size: 18px;
+        padding-left: 0%;
+    }
      }    
