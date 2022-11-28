@@ -42,11 +42,14 @@ formulario.addEventListener('submit', (e) => {
     e.preventDefault();
     let datos = e.target.children;
 
-    meses = datos[0].value;
-    importe = datos[1].value;
+    let meses = 0;
+    let importe = 0;
+
+    meses = parseInt(datos[0].value);
+    importe = parseInt(datos[1].value);
 
 if (meses !== '' && importe !== '' && meses > 0 && importe > 0) {
-switch (meses) {
+    switch (meses) {
         case 6:
             resultado = seisMeses(importe, meses);
             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
@@ -67,11 +70,14 @@ switch (meses) {
             resultado = equisMeses(importe, meses);
             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
             break;
-    }
+            }
 } else {
     alert('ingresá algo');
 };
 });
+
+console.log(listaSimulaciones);
+
 
 // for (let credito of listaSimulaciones) {
 //     let li = document.createElement('li');
