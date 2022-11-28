@@ -144,7 +144,7 @@ input {
 h4 {
     font-family: 'SeymourOne';
     color:rgb(94 36 112);
-    font-size: 20px;
+    font-size: 20px !important;
 }
 
 .bloqueDeLista1 {
@@ -177,11 +177,25 @@ h4 {
 
 #filtroMayorA {
     display: inline;
-    height: 20px;
+    height: 25px;
     width: 100px;
     margin: 0px !important;
     font-family: sans-serif;
 }
+
+#botonSimular {
+    background-color: rgb(146, 211, 48);
+    color:rgb(94 36 112);
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+#listaCreditosRealizados {
+    margin-left: 1%;
+    font-size: 22px;
+}
+
+/* responsive */
 
 @media screen and (max-width: 992px) {
     .seccionSimulacion {
@@ -196,6 +210,27 @@ h4 {
     }
     .bloqueDeLista2 {
         grid-row: 3/4;
+    }
+    input {
+        height: 70px;
+        font-size: 30px !important;
+        width: 80%;
+    }
+    h4 {
+        font-size: 40px !important;
+    }
+    #filtroMayorA {
+        height: 35px;
+        width: 150px;
+    }
+    h3 {
+        font-size: 40px !important;
+    }
+    .estiloDivLista ul {
+        font-size: 30px;
+    }
+    #listaCreditosRealizados {
+        font-size: 25px;
     }
      }
 
@@ -212,5 +247,16 @@ h4 {
     }
     .bloqueDeLista2 {
         grid-row: 4/5;
+    }
+    input {
+        height: 80px;
+        font-size: 30px !important;
+        width: 80%;
+    }
+    h4 {
+        font-size: 40px;
+    }
+    #listaCreditosRealizados {
+        font-size: 26px;
     }
      }

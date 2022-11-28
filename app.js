@@ -37,6 +37,7 @@ let simulacionesGrandes = [];
 let errorIntroDatos = document.getElementById('error');
 let formulario = document.getElementById('formularioSimulador');
 let listaCreditos = document.getElementById('listaCreditosRealizados');
+let listaFiltrada = document.getElementById('listaConFiltro');
 
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -86,7 +87,9 @@ if (listaSimulaciones.length > 4) {
 }
 });
 
-console.log(listaSimulaciones);
+function ingresarFiltro(value) {
+    listaFiltrada.innerText = listaSimulaciones.filter((creditoSimulado) => creditoSimulado.importe > value ).map(({simulacion}) => simulacion).join(`\n`);
+}
 
 
 // for (let credito of listaSimulaciones) {

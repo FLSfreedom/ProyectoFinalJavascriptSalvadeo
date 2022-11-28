@@ -51,11 +51,11 @@
             </div>
         </div>
         <div class="bloqueDeLista2">
-            <h4>Filtro mayores que 
-                <input type="number" id="filtroMayorA" placeholder="Número">
+            <h4>Filtro mayores a 
+                <input type="number" id="filtroMayorA" placeholder="Número" onkeyup="ingresarFiltro(this.value)">
             </h4>
             <div>
-                <p> </p>
+                <p id="listaConFiltro"></p>
             </div>
         </div>
     </div>
