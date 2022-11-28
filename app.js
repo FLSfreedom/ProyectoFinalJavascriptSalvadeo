@@ -39,6 +39,13 @@ let formulario = document.getElementById('formularioSimulador');
 let listaCreditos = document.getElementById('listaCreditosRealizados');
 let listaFiltrada = document.getElementById('listaConFiltro');
 
+let listaSimulacionesLocalS = localStorage.getItem('listaSimulaciones');
+
+if(listaSimulacionesLocalS) {
+    listaSimulaciones = JSON.parse(listaSimulacionesLocalS);
+}
+
+
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
     let datos = e.target.children;
@@ -85,57 +92,11 @@ listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).jo
 if (listaSimulaciones.length > 4) {
     listaSimulaciones.splice(0, 1);
 }
+
+localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones));
+
 });
 
 function ingresarFiltro(value) {
     listaFiltrada.innerText = listaSimulaciones.filter((creditoSimulado) => creditoSimulado.importe > value ).map(({simulacion}) => simulacion).join(`\n`);
 }
-
-
-// for (let credito of listaSimulaciones) {
-//     let li = document.createElement('li');
-//     li.innerText =`Importe $${credito.importe} - meses ${credito.meses} - cuotas fijas de $${Math.round(credito.resultado)}.`;
-//     listaCreditos.appendChild(li);
-// };
-
-
-
-// formularioSimulador.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     let datos = e.target.children;}
-// );
-
-// if((datos[0].value !== '' && datos[0].value > 0) && (datos[1].value !== '' && datos[1].value > 0)) {
-//     let existeDisfraz = disfracesEnVenta.some((disfraz) => disfraz.nombre === datos[0].value);
-//     if(existeDisfraz) {
-//       parrafoError.innerText = 'Este disfraz ya existe, imposible agregarlo de nuevo.'
-//     } else {      
-//       disfracesEnVenta.push(new Disfraz(incremento,datos[0].value, datos[1].value, datos[2].value));
-//       incremento++;
-//       listaDisfraces.innerHTML += `<li>Nombre: ${datos[0].value} - Precio: ${datos[1].value} - Stock: ${datos[2].value}</li>`
-//       parrafoError.innerText = ''
-//       localStorage.setItem('disfracezEnVenta', JSON.stringify(disfracesEnVenta));
-//     }
-//   } else {
-//     parrafoError.innerText = 'Todos los campos son obligatorios';
-// };
-
-//         case 1:
-//             alert(listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`));
-//             break;
-//         case 2:
-//             alert((simulacionesGrandes = listaSimulaciones.filter((creditoSimulado) => creditoSimulado.importe > 99999 )).map(({simulacion}) => simulacion).join(`\n`));
-//             break;
-//         case 3:
-//             resultado = salir();
-//             break;
-
-
-
-// do {
-// meses = parseFloat(prompt("Ingrese a cuantos meses desea devolver el crédito: 6, 12, 18 o 24. \nSi desea ver todas sus simulaciones recientes ingrese 1. \nSi desea ver sus simulaciones recientes iguales o mayores a 100000 ingrese 2. \nSi desea salir ingrese 3."))
-//     if (meses == 6 || meses == 12 || meses == 18 || meses == 24) {
-// importe = parseFloat(prompt("Ingrese el importe del crédito que desea solicitar."))
-//     }
-//     indicarMesOpcion(meses)
-// } while (meses != 3);

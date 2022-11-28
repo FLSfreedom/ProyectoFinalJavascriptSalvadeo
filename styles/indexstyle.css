@@ -173,11 +173,20 @@ h4 {
 #listaCreditosRealizados {
     color:rgb(100, 190, 250);
     font-weight: bold;
+    margin-left: 1%;
+    font-size: 22px;
+}
+
+#listaConFiltro {
+    color:rgb(193, 141, 209);
+    font-weight: bold;
+    margin-left: 1%;
+    font-size: 22px;
 }
 
 #filtroMayorA {
     display: inline;
-    height: 25px;
+    height: 24px;
     width: 100px;
     margin: 0px !important;
     font-family: sans-serif;
@@ -188,11 +197,6 @@ h4 {
     color:rgb(94 36 112);
     font-weight: bold;
     border-radius: 10px;
-}
-
-#listaCreditosRealizados {
-    margin-left: 1%;
-    font-size: 22px;
 }
 
 /* responsive */
@@ -232,6 +236,9 @@ h4 {
     #listaCreditosRealizados {
         font-size: 25px;
     }
+    #listaConFiltro {
+        font-size: 25px;
+    }
      }
 
 @media screen and (max-width: 768px) {
@@ -257,6 +264,9 @@ h4 {
         font-size: 40px;
     }
     #listaCreditosRealizados {
+        font-size: 26px;
+    }
+    #listaConFiltro {
         font-size: 26px;
     }
      }
