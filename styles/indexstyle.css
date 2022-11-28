@@ -322,3 +322,20 @@ footer a {
         grid-template-rows: 1fr 5fr;
     }
      }
+
+@media screen and (max-width: 430px) {
+    .estiloDivTituloSec {
+        height: 220px;
+    }
+    .estiloAviso h3 {
+        font-size: 30px !important;
+    }
+    h4 {
+        font-size: 30px !important;
+    }
+    .estiloDivLista ul {
+        text-align: center;
+        font-size: 20px;
+        padding-left: 0%;
+    }
+     }    
