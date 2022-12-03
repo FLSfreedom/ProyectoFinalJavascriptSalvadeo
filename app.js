@@ -7,26 +7,6 @@ class creditoSimulado {
     }
 }
 
-function seisMeses(importe, meses) {
-    return (importe + ((importe / 100) *10)) / meses;
-}
-
-function doceMeses(importe, meses) {
-    return (importe + ((importe / 100) *20)) / meses;
-}
-
-function dieciochoMeses(importe, meses) {
-    return (importe + ((importe / 100) *30)) / meses;
-}
-
-function veinticuatroMeses(importe, meses) {
-    return (importe + ((importe / 100) *40)) / meses;
-}
-
-function equisMeses(importe, meses) {
-    return (importe + (importe*.70)) / meses;
-}
-
 let listaSimulaciones = [];
 let simulacionesGrandes = [];
 
@@ -42,7 +22,6 @@ if(listaSimulacionesLocalS) {
     listaSimulaciones = JSON.parse(listaSimulacionesLocalS);
 }
 
-
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
     let datos = e.target.children;
@@ -53,26 +32,37 @@ formulario.addEventListener('submit', (e) => {
     meses = parseInt(datos[0].value);
     importe = parseInt(datos[1].value);
 
+let porcentajeCalculo = 0;
+
+function calculoCredito (importe, meses, porcentajeCalculo) {
+    return (importe + ((importe / 100) *porcentajeCalculo)) / meses;
+};
+
 if (meses !== '' && importe !== '' && meses > 0 && importe > 0) {
     switch (meses) {
         case 6:
-            resultado = seisMeses(importe, meses);
+            porcentajeCalculo = 10;
+            resultado = calculoCredito (importe, meses, porcentajeCalculo);
             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
             break;
         case 12:
-            resultado = doceMeses(importe, meses);
+            porcentajeCalculo = 20;
+            resultado = calculoCredito (importe, meses, porcentajeCalculo);
             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
             break;
         case 18:
-            resultado = dieciochoMeses(importe, meses);
+            porcentajeCalculo = 30;
+            resultado = calculoCredito (importe, meses, porcentajeCalculo);
             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
             break;
         case 24:
-            resultado = veinticuatroMeses(importe, meses);
+            porcentajeCalculo = 40;
+            resultado = calculoCredito (importe, meses, porcentajeCalculo);
             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
             break;
         default:
-            resultado = equisMeses(importe, meses);
+            porcentajeCalculo = 70;
+            resultado = calculoCredito (importe, meses, porcentajeCalculo);
             listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
             break;
             }
