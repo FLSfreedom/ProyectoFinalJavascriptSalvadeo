@@ -20,6 +20,7 @@ let listaSimulacionesLocalS = localStorage.getItem('listaSimulaciones');
 
 if(listaSimulacionesLocalS) {
     listaSimulaciones = JSON.parse(listaSimulacionesLocalS);
+    listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`);
 }
 
 formulario.addEventListener('submit', (e) => {
@@ -32,56 +33,56 @@ formulario.addEventListener('submit', (e) => {
     meses = parseInt(datos[0].value);
     importe = parseInt(datos[1].value);
 
-let porcentajeCalculo = 0;
+    let porcentajeCalculo = 0;
 
-function calculoCredito (importe, meses, porcentajeCalculo) {
+    function calculoCredito (importe, meses, porcentajeCalculo) {
     return (importe + ((importe / 100) *porcentajeCalculo)) / meses;
-};
+    };
 
-if (meses !== '' && importe !== '' && meses > 0 && importe > 0) {
-    switch (meses) {
-        case 6:
-            porcentajeCalculo = 10;
-            resultado = calculoCredito (importe, meses, porcentajeCalculo);
-            listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
-            break;
-        case 12:
-            porcentajeCalculo = 20;
-            resultado = calculoCredito (importe, meses, porcentajeCalculo);
-            listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
-            break;
-        case 18:
-            porcentajeCalculo = 30;
-            resultado = calculoCredito (importe, meses, porcentajeCalculo);
-            listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
-            break;
-        case 24:
-            porcentajeCalculo = 40;
-            resultado = calculoCredito (importe, meses, porcentajeCalculo);
-            listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
-            break;
-        default:
-            porcentajeCalculo = 70;
-            resultado = calculoCredito (importe, meses, porcentajeCalculo);
-            listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
-            break;
-            }
-    errorIntroDatos.innerText = '';
-    nuevaSimulacionC.innerText = `Importe $${importe} - meses ${meses} - cuotas fijas de $${Math.round(resultado)}.`;
+    if (meses !== '' && importe !== '' && meses > 0 && importe > 0) {
+        switch (meses) {
+            case 6:
+                porcentajeCalculo = 10;
+                resultado = calculoCredito (importe, meses, porcentajeCalculo);
+                listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+                break;
+            case 12:
+                porcentajeCalculo = 20;
+                resultado = calculoCredito (importe, meses, porcentajeCalculo);
+                listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+                break;
+            case 18:
+                porcentajeCalculo = 30;
+                resultado = calculoCredito (importe, meses, porcentajeCalculo);
+                listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+                break;
+            case 24:
+                porcentajeCalculo = 40;
+                resultado = calculoCredito (importe, meses, porcentajeCalculo);
+                listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+                break;
+            default:
+                porcentajeCalculo = 70;
+                resultado = calculoCredito (importe, meses, porcentajeCalculo);
+                listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+                break;
+                }
+        errorIntroDatos.innerText = '';
+        nuevaSimulacionC.innerText = `Importe $${importe} - meses ${meses} - cuotas fijas de $${Math.round(resultado)}.`;
 
-} else {
-    errorIntroDatos.innerText = 'Debés completar todos los campos ¡Por favor!';
-};
-datos[0].value = '';
-datos[1].value = '';
+    } else {
+        errorIntroDatos.innerText = 'Debés completar todos los campos ¡Por favor!';
+    };
+    datos[0].value = '';
+    datos[1].value = '';
 
-listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`);
+    listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`);
 
-if (listaSimulaciones.length > 4) {
-    listaSimulaciones.splice(0, 1);
-};
+    if (listaSimulaciones.length > 4) {
+        listaSimulaciones.splice(0, 1);
+    };
 
-localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones));
+    localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones));
 
 });
 
