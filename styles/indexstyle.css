@@ -224,6 +224,44 @@ footer a {
     text-decoration: none;
 }
 
+/* swal */
+
+.swal-title {
+    color: rgb(236, 54, 41);
+  }
+
+.swal-overlay {
+    background-color: rgba(43, 165, 118, 0.45);
+  }
+
+.swal-text {
+    background-color: #000000;
+    font-weight: bold;
+    padding: 17px;
+    border: 2px solid rgb(255, 163, 77);
+    display: block;
+    margin: 22px;
+    text-align: center;
+    color: rgb(146, 211, 48);
+  }
+
+.swal-modal {
+    background-color: rgba(63, 255, 245, 0.69);
+    border: 3px solid white;
+  }
+
+.swal-icon--success__hide-corners {
+    background-color: rgba(63, 255, 245, 0);
+}
+
+.swal-icon--success:before {
+    background-color: rgba(63, 255, 245, 0);
+  }
+
+.swal-icon--success:after {
+    background-color: rgba(63, 255, 245, 0);
+  }
+
 /* responsive */
 
 @media screen and (max-width: 1084px) {

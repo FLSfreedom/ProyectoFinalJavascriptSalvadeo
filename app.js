@@ -23,6 +23,10 @@ if(listaSimulacionesLocalS) {
     listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`);
 }
 
+function agregarSimulacionLista (importe, meses, resultado) {
+    return listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+};
+
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
     let datos = e.target.children;
@@ -39,32 +43,50 @@ formulario.addEventListener('submit', (e) => {
     return (importe + ((importe / 100) *porcentajeCalculo)) / meses;
     };
 
+    function agregarSimulacionLista (importe, meses, resultado) {
+        swal({
+            title: "¿Agregar esta simulación a la lista?",
+            text: "En caso de aceptar, la simulación será agregada a la lista de tus simulaciones recientes \n(podés guardar hasta 4). \n \nTambién recibirás una frase de una conocida serie \n¡En su idioma original!",
+            buttons: ["No agregar :(", "¡Agregar!"],
+          })
+          .then((agregarrr) => {
+            if (agregarrr) {
+              swal("¡La simulación fue agregada!", {
+                icon: "success",
+              });
+              return [listaSimulaciones.push(new creditoSimulado(importe, meses, resultado)), listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`)];
+            } else {
+              swal("No agregaste la simulación y no habrá frase :(");
+            }
+          });
+    };
+
     if (meses !== '' && importe !== '' && meses > 0 && importe > 0) {
         switch (meses) {
             case 6:
                 porcentajeCalculo = 10;
                 resultado = calculoCredito (importe, meses, porcentajeCalculo);
-                listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+                agregarSimulacionLista (importe, meses, resultado) ;
                 break;
             case 12:
                 porcentajeCalculo = 20;
                 resultado = calculoCredito (importe, meses, porcentajeCalculo);
-                listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+                agregarSimulacionLista (importe, meses, resultado) ;
                 break;
             case 18:
                 porcentajeCalculo = 30;
                 resultado = calculoCredito (importe, meses, porcentajeCalculo);
-                listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+                agregarSimulacionLista (importe, meses, resultado) ;
                 break;
             case 24:
                 porcentajeCalculo = 40;
                 resultado = calculoCredito (importe, meses, porcentajeCalculo);
-                listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+                agregarSimulacionLista (importe, meses, resultado) ;
                 break;
             default:
                 porcentajeCalculo = 70;
                 resultado = calculoCredito (importe, meses, porcentajeCalculo);
-                listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
+                agregarSimulacionLista (importe, meses, resultado) ;
                 break;
                 }
         errorIntroDatos.innerText = '';
