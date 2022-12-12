@@ -39,24 +39,28 @@ formulario.addEventListener('submit', (e) => {
     return (importe + ((importe / 100) *porcentajeCalculo)) / meses;
     };
 
+
     function agregarSimulacionLista (importe, meses, resultado) {
-        swal("No agregaste la simulación y no habrá frase :(");
         swal({
             title: `Importe $${importe} - meses ${meses} - cuotas fijas de $${Math.round(resultado)}.`,
-            title: "¿Agregar esta simulación a la lista?",
-            text: "En caso de aceptar, la simulación será agregada a la lista de tus simulaciones recientes \n(podés guardar hasta 4). \n \nTambién recibirás una frase de una conocida serie \n¡En su idioma original!",
-            buttons: ["No agregar :(", "¡Agregar!"],
           })
-          .then((agregarrr) => {
-            if (agregarrr) {
-              swal("¡La simulación fue agregada!", {
-                icon: "success",
+          .then(() => {
+            swal({
+                title: "¿Agregar esta simulación a la lista?",
+                text: "En caso de aceptar, la simulación será agregada a la lista de tus simulaciones recientes \n(podés guardar hasta 5). \n \nTambién recibirás una frase de una conocida serie \n¡En su idioma original!",
+                buttons: ["No agregar :(", "¡Agregar!"],
+              })
+              .then((agregarrr) => {
+                if (agregarrr) {
+                  swal("¡La simulación fue agregada!", {
+                    icon: "success",
+                  });
+                  return [listaSimulaciones.push(new creditoSimulado(importe, meses, resultado)), listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`), localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones))];
+                } else {
+                  swal("No agregaste la simulación y no habrá frase :(");
+                }
               });
-              return [listaSimulaciones.push(new creditoSimulado(importe, meses, resultado)), listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`), localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones))];
-            } else {
-              swal("No agregaste la simulación y no habrá frase :(");
-            }
-          });
+          })
     };
 
     if (meses !== '' && importe !== '' && meses > 0 && importe > 0) {
