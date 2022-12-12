@@ -23,10 +23,6 @@ if(listaSimulacionesLocalS) {
     listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`);
 }
 
-function agregarSimulacionLista (importe, meses, resultado) {
-    return listaSimulaciones.push(new creditoSimulado(importe, meses, resultado));
-};
-
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
     let datos = e.target.children;
@@ -44,7 +40,9 @@ formulario.addEventListener('submit', (e) => {
     };
 
     function agregarSimulacionLista (importe, meses, resultado) {
+        swal("No agregaste la simulación y no habrá frase :(");
         swal({
+            title: `Importe $${importe} - meses ${meses} - cuotas fijas de $${Math.round(resultado)}.`,
             title: "¿Agregar esta simulación a la lista?",
             text: "En caso de aceptar, la simulación será agregada a la lista de tus simulaciones recientes \n(podés guardar hasta 4). \n \nTambién recibirás una frase de una conocida serie \n¡En su idioma original!",
             buttons: ["No agregar :(", "¡Agregar!"],
@@ -54,7 +52,7 @@ formulario.addEventListener('submit', (e) => {
               swal("¡La simulación fue agregada!", {
                 icon: "success",
               });
-              return [listaSimulaciones.push(new creditoSimulado(importe, meses, resultado)), listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`)];
+              return [listaSimulaciones.push(new creditoSimulado(importe, meses, resultado)), listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`), localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones))];
             } else {
               swal("No agregaste la simulación y no habrá frase :(");
             }
@@ -103,8 +101,6 @@ formulario.addEventListener('submit', (e) => {
     if (listaSimulaciones.length > 4) {
         listaSimulaciones.splice(0, 1);
     };
-
-    localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones));
 
 });
 
