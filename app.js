@@ -39,10 +39,11 @@ formulario.addEventListener('submit', (e) => {
     return (importe + ((importe / 100) *porcentajeCalculo)) / meses;
     };
 
-    function fraseRegalo () {
+    
+    function fraseRegalo (fraseAMostrar) {
         Toastify({
-            text: fetch(JSON.stringify(`https://api.breakingbadquotes.xyz/v1/quotes`)),
-            duration: 8000,
+            text: fraseAMostrar,
+            duration: 10000,
             close: true,
             gravity: "top",
             position: "center",
@@ -51,6 +52,11 @@ formulario.addEventListener('submit', (e) => {
               background: "linear-gradient(to right, #00b09b, #96c93d)",
             },
           }).showToast();
+    };
+
+    function frase () {fetch('https://api.breakingbadquotes.xyz/v1/quotes')
+        .then((response) => response.text())
+        .then((data) => fraseRegalo(data));
     };
 
     function agregarSimulacionLista (importe, meses, resultado) {
@@ -68,7 +74,10 @@ formulario.addEventListener('submit', (e) => {
                   swal("¡La simulación fue agregada!", {
                     icon: "success",
                   });
-                  return [listaSimulaciones.push(new creditoSimulado(importe, meses, resultado)), listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`), localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones)), fraseRegalo()];
+                  return [listaSimulaciones.push(new creditoSimulado(importe, meses, resultado)), 
+                    listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`), 
+                    localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones)), 
+                    frase()];
                 } else {
                   swal("No agregaste la simulación y no habrá frase :(");
                 }
