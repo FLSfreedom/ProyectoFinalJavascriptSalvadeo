@@ -39,24 +39,23 @@ formulario.addEventListener('submit', (e) => {
     return (importe + ((importe / 100) *porcentajeCalculo)) / meses;
     };
 
-    
-    function fraseRegalo (fraseAMostrar) {
-        Toastify({
-            text: fraseAMostrar,
-            duration: 10000,
-            close: true,
-            gravity: "top",
-            position: "center",
-            stopOnFocus: true,
-            style: {
-              background: "linear-gradient(to right, #00b09b, #96c93d)",
-            },
-          }).showToast();
-    };
-
     function frase () {fetch('https://api.breakingbadquotes.xyz/v1/quotes')
-        .then((response) => response.text())
-        .then((data) => fraseRegalo(data));
+        .then(response => response.json())
+        .then(function(data) {
+            let fraseMostrar = JSON.stringify(data[0].quote)
+            let autorMostrar = JSON.stringify(data[0].author)
+            Toastify({
+                text: fraseMostrar + " - " + autorMostrar,
+                duration: 15000,
+                close: true,
+                gravity: "top",
+                position: "center",
+                stopOnFocus: true,
+                style: {
+                  background: "linear-gradient(to right, #00b09b, #96c93d)",
+                },
+              }).showToast();
+        });
     };
 
     function agregarSimulacionLista (importe, meses, resultado) {
@@ -114,7 +113,6 @@ formulario.addEventListener('submit', (e) => {
                 break;
                 }
         errorIntroDatos.innerText = '';
-        nuevaSimulacionC.innerText = `Importe $${importe} - meses ${meses} - cuotas fijas de $${Math.round(resultado)}.`;
 
     } else {
         errorIntroDatos.innerText = 'Debés completar todos los campos ¡Por favor!';
