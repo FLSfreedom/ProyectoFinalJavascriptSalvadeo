@@ -18,7 +18,7 @@
 /* Estilos del body */
 
 body {
-    background-image:linear-gradient(to top, rgb(102, 100, 11), rgb(250, 185, 110)); background-repeat: no-repeat; background-attachment: fixed;
+    background-image:linear-gradient(to top, rgb(102, 100, 11), rgb(255, 151, 33)); background-repeat: no-repeat; background-attachment: fixed;
 }
 
 /* Estilos del header */
