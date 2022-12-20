@@ -10,8 +10,7 @@ class creditoSimulado {
 let listaSimulaciones = [];
 let simulacionesGrandes = [];
 
-let nuevaSimulacionC = document.getElementById('nuevaSimulacion');
-let errorIntroDatos = document.getElementById('error');
+let MensajeErrorIntroDatos = document.getElementById('error');
 let formulario = document.getElementById('formularioSimulador');
 let listaCreditos = document.getElementById('listaCreditosRealizados');
 let listaFiltrada = document.getElementById('listaConFiltro');
@@ -23,23 +22,7 @@ if(listaSimulacionesLocalS) {
     listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`);
 }
 
-formulario.addEventListener('submit', (e) => {
-    e.preventDefault();
-    let datos = e.target.children;
-
-    let meses = 0;
-    let importe = 0;
-
-    meses = parseInt(datos[0].value);
-    importe = parseInt(datos[1].value);
-
-    let porcentajeCalculo = 0;
-
-    function calculoCredito (importe, meses, porcentajeCalculo) {
-    return (importe + ((importe / 100) *porcentajeCalculo)) / meses;
-    };
-
-    function frase () {fetch('https://api.breakingbadquotes.xyz/v1/quotes')
+function frase () {fetch('https://api.breakingbadquotes.xyz/v1/quotes')
         .then(response => response.json())
         .then(function(data) {
             let fraseMostrar = JSON.stringify(data[0].quote)
@@ -56,33 +39,49 @@ formulario.addEventListener('submit', (e) => {
                 },
               }).showToast();
         });
-    };
+};
 
-    function agregarSimulacionLista (importe, meses, resultado) {
+function calculoCredito (importe, meses, porcentajeCalculo) {
+    return (importe + ((importe / 100) *porcentajeCalculo)) / meses;
+};
+
+function agregarSimulacionLista (importe, meses, resultado) {
+    swal({
+        title: `Importe $${importe} - meses ${meses} - cuotas fijas de $${Math.round(resultado)}.`,
+      })
+      .then(() => {
         swal({
-            title: `Importe $${importe} - meses ${meses} - cuotas fijas de $${Math.round(resultado)}.`,
+            title: "¿Agregar esta simulación a la lista?",
+            text: "En caso de aceptar, la simulación será agregada a la lista de tus simulaciones recientes \n(podés guardar hasta 5). \n \nTambién recibirás una frase de una conocida serie \n¡En su idioma original!",
+            buttons: ["No agregar :(", "¡Agregar!"],
           })
-          .then(() => {
-            swal({
-                title: "¿Agregar esta simulación a la lista?",
-                text: "En caso de aceptar, la simulación será agregada a la lista de tus simulaciones recientes \n(podés guardar hasta 5). \n \nTambién recibirás una frase de una conocida serie \n¡En su idioma original!",
-                buttons: ["No agregar :(", "¡Agregar!"],
-              })
-              .then((agregarrr) => {
-                if (agregarrr) {
-                  swal("¡La simulación fue agregada!", {
-                    icon: "success",
-                  });
-                  return [listaSimulaciones.push(new creditoSimulado(importe, meses, resultado)), 
-                    listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`), 
-                    localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones)), 
-                    frase()];
-                } else {
-                  swal("No agregaste la simulación y no habrá frase :(");
-                }
+          .then((agregarrr) => {
+            if (agregarrr) {
+              swal("¡La simulación fue agregada!", {
+                icon: "success",
               });
-          })
-    };
+              return [listaSimulaciones.push(new creditoSimulado(importe, meses, resultado)), 
+                listaCreditos.innerText = listaSimulaciones.map(({simulacion}) => simulacion).join(`\n`), 
+                localStorage.setItem('listaSimulaciones', JSON.stringify(listaSimulaciones)), 
+                frase()];
+            } else {
+              swal("No agregaste la simulación y no habrá frase :(");
+            }
+          });
+      })
+};
+
+formulario.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let datos = e.target.children;
+
+    let meses = 0;
+    let importe = 0;
+
+    meses = parseInt(datos[0].value);
+    importe = parseInt(datos[1].value);
+
+    let porcentajeCalculo = 0;
 
     if (meses !== '' && importe !== '' && meses > 0 && importe > 0) {
         switch (meses) {
@@ -112,10 +111,10 @@ formulario.addEventListener('submit', (e) => {
                 agregarSimulacionLista (importe, meses, resultado) ;
                 break;
                 }
-        errorIntroDatos.innerText = '';
+    MensajeErrorIntroDatos.innerText = '';
 
     } else {
-        errorIntroDatos.innerText = 'Debés completar todos los campos ¡Por favor!';
+        MensajeErrorIntroDatos.innerText = 'Debés completar todos los campos ¡Por favor!';
     };
     datos[0].value = '';
     datos[1].value = '';
